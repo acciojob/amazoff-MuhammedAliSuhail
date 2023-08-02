@@ -1,5 +1,6 @@
 package com.driver;
 
+import com.sun.jdi.event.ExceptionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,12 @@ public class Services {
     }
 
     public Order getOrderById(String Oid){
-        return repo.ODB.get(Oid);
+        try {
+            return repo.ODB.get(Oid);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
     }
 
     public DeliveryPartner PaireDelivaryParner(String partnerId){

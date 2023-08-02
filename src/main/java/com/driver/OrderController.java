@@ -50,6 +50,7 @@ Services services=new Services();
 
         Order order= services.getOrderById(orderId);
         //order should be returned with an orderId.
+if(order==null)return new ResponseEntity<>(order,HttpStatus.BAD_REQUEST);
 
         return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
