@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("orders")
 public class OrderController {
-    @Autowired
-Services services;
+
+Services services=new Services();
 //@GetMapping("/test")
 //public Integer test(){
 ////    String ans=services.IntegerTimetostring(n);

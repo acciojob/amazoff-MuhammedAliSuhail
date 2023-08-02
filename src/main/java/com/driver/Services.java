@@ -8,8 +8,8 @@ import java.util.List;
 
 @Service
 public class Services {
-    @Autowired
-    Repo repo;
+
+    Repo repo=new Repo();
 
     public void addOrder(Order o){
         repo.ODB.put(o.getId(),o);
