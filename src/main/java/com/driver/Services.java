@@ -153,13 +153,18 @@ return IntegerTimetostring(ans);
 
     public void deleteOrderId(String OrderId){
         repo.ODB.remove(OrderId);
+
         Iterator<String> iterator=repo.OPDB.keySet().iterator();
         while (iterator.hasNext()) {
             String s = iterator.next();
             if (s.equals(OrderId)) {
+                String partnerId=repo.OPDB.get(s);
+                int count=repo.PDB.get(partnerId).getNumberOfOrders();
+                repo.PDB.get(partnerId).setNumberOfOrders(count-1);
                 iterator.remove();
             }
         }
+
 
     }
 
