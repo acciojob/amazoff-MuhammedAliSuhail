@@ -3,6 +3,7 @@ package com.driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -137,13 +138,24 @@ return IntegerTimetostring(ans);
     }
 
     public void deletePartnerId(String partnerId){
+
         repo.PDB.remove(partnerId);
-        for(String s:repo.OPDB.keySet()){
-            if(repo.OPDB.get(s).equals(partnerId)){
-                repo.OPDB.remove(s);
+
+
+        Iterator<String> iterator = repo.OPDB.keySet().iterator();
+        while (iterator.hasNext()) {
+            String s = iterator.next();
+            if (repo.OPDB.get(s).equals(partnerId)) {
+                iterator.remove();
             }
         }
     }
+
+
+
+
+
+
     public void deleteOrderId(String OrderId){
         repo.ODB.remove(OrderId);
         for(String s:repo.OPDB.keySet()){
