@@ -91,7 +91,7 @@ public class Services {
         for(String s:repo.OPDB.keySet()){
             if(repo.OPDB.get(s).equals(partnerId)){
                 Order temp=repo.ODB.get(s);
-                int TEMP=Integer.parseInt(time);
+                int TEMP=StringTimetoInteger(time);
                 if(temp.getDeliveryTime()<TEMP){
                     count++;
                 }
