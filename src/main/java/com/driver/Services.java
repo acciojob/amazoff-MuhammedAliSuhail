@@ -151,17 +151,16 @@ return IntegerTimetostring(ans);
         }
     }
 
-
-
-
-
-
     public void deleteOrderId(String OrderId){
         repo.ODB.remove(OrderId);
-        for(String s:repo.OPDB.keySet()){
-            if(s.equals(OrderId)){
-                repo.OPDB.remove(s);
+        Iterator<String> iterator=repo.OPDB.keySet().iterator();
+        while (iterator.hasNext()) {
+            String s = iterator.next();
+            if (s.equals(OrderId)) {
+                iterator.remove();
             }
         }
+
     }
+
 }
