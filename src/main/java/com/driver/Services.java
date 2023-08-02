@@ -63,7 +63,7 @@ public class Services {
 
     public List<String> getAllOrders(){
         List<String> ans=new LinkedList<>();
-        for(String OrderId : repo.OPDB.keySet()){
+        for(String OrderId : repo.ODB.keySet()){
 
                 ans.add(OrderId);
             }
@@ -81,7 +81,7 @@ public class Services {
                     break;
                 }
             }
-            if(!flag)count++;
+            if(flag==false)count++;
         }
         return count;
     }
