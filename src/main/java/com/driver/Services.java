@@ -1,7 +1,5 @@
 package com.driver;
 
-import com.sun.jdi.event.ExceptionEvent;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
@@ -14,14 +12,21 @@ public class Services {
     Repo repo=new Repo();
 
     public void addOrder(Order o){
+        if(repo.ODB.containsKey(o))return;
+
         repo.ODB.put(o.getId(),o);
 
     }
 
     public void addPartner(String id){
+        if(repo.PDB.containsKey(id))return;
+
         repo.PDB.put(id,null);
     }
     public void addOrderPartnerPair(String Oid,String Pid){
+        if(repo.OPDB.containsKey(Oid)){
+            return;
+        }
         repo.OPDB.put(Oid,Pid);
     }
 
@@ -32,17 +37,17 @@ public class Services {
 
     }
 
-    public DeliveryPartner PaireDelivaryParner(String partnerId){
-        DeliveryPartner NewDelivaryParner=new DeliveryPartner(partnerId);
+    public DeliveryPartner PaireDelivaryPartner(String partnerId){
+        DeliveryPartner NewDelivaryPartner=new DeliveryPartner(partnerId);
         int count=0;
         for(String s:repo.OPDB.keySet()){
             if(repo.OPDB.get(s).equals(partnerId)){
                 count++;
             }
         }
-        NewDelivaryParner.setNumberOfOrders(count);
-        repo.PDB.put(partnerId,NewDelivaryParner);
-        return NewDelivaryParner;
+        NewDelivaryPartner.setNumberOfOrders(count);
+        repo.PDB.put(partnerId,NewDelivaryPartner);
+        return NewDelivaryPartner;
     }
     public Integer OrderCount(String partnerId){
 

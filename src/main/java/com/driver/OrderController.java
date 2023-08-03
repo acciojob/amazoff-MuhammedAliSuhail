@@ -2,7 +2,6 @@ package com.driver;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -66,7 +65,7 @@ try {
     @GetMapping("/get-partner-by-id/{partnerId}")
     public ResponseEntity<DeliveryPartner> getPartnerById(@PathVariable String partnerId){
 try {
-    DeliveryPartner deliveryPartner = services.PaireDelivaryParner(partnerId);
+    DeliveryPartner deliveryPartner = services.PaireDelivaryPartner(partnerId);
     return new ResponseEntity<>(deliveryPartner, HttpStatus.CREATED);
 }catch (Exception e){
     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
