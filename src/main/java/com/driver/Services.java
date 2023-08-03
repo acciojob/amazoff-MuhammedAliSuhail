@@ -33,6 +33,8 @@ public class Services {
     }
 
     public ResponseEntity<Order> getOrderById(String Oid){
+           if(!repo.ODB.containsKey(Oid))return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
             try {
                 Order r= repo.ODB.get(Oid);
                 return new ResponseEntity<>(r,HttpStatus.CREATED);
@@ -88,7 +90,7 @@ public class Services {
     }
 
     public Integer GetCountOfUnassignedOrder(){
-        int count=0;
+        Integer count=0;
         for (String fullOrder : repo.ODB.keySet()) {
             if (!repo.OPDB.containsKey(fullOrder)) {
                 count++;
