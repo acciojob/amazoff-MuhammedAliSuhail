@@ -1,5 +1,7 @@
 package com.driver;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
@@ -30,9 +32,13 @@ public class Services {
         repo.OPDB.put(Oid,Pid);
     }
 
-    public Order getOrderById(String Oid){
-
-            return repo.ODB.get(Oid);
+    public ResponseEntity<Order> getOrderById(String Oid){
+            try {
+                Order r= repo.ODB.get(Oid);
+                return new ResponseEntity<>(r,HttpStatus.CREATED);
+            }catch (Exception e){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
 
 
     }

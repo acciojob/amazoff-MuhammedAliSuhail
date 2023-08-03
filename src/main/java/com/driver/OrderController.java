@@ -50,12 +50,11 @@ Services services=new Services();
 
     @GetMapping("/get-order-by-id/{orderId}")
     public ResponseEntity<Order> getOrderById(@PathVariable String orderId){
-try {
-    Order order = services.getOrderById(orderId);
-    return new ResponseEntity<>(order, HttpStatus.CREATED);
-}catch (Exception e){
-    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-}
+
+
+    return services.getOrderById(orderId);
+
+
         //order should be returned with an orderId.
 
 
