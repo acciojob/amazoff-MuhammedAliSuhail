@@ -83,15 +83,10 @@ public class Services {
 
     public Integer GetCountOfUnassignedOrder(){
         int count=0;
-        for(String FullOrder:repo.ODB.keySet()){
-            boolean flag=false;
-            for(String AssignedOrder:repo.OPDB.keySet()){
-                if(AssignedOrder.equals(FullOrder)) {
-                    flag=true;
-                    break;
-                }
+        for (String fullOrder : repo.ODB.keySet()) {
+            if (!repo.OPDB.containsKey(fullOrder)) {
+                count++;
             }
-            if(flag==false)count++;
         }
         return count;
     }
