@@ -26,12 +26,10 @@ public class Services {
     }
 
     public Order getOrderById(String Oid){
-        try {
+
             return repo.ODB.get(Oid);
-        }catch (Exception e){
-            System.out.println(e);
-        }
-        return null;
+
+
     }
 
     public DeliveryPartner PaireDelivaryParner(String partnerId){
